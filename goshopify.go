@@ -116,6 +116,8 @@ type Client struct {
 	ShippingZone               ShippingZoneService
 	ProductListing             ProductListingService
 	AccessScopes               AccessScopesService
+
+	MetafieldDefinition MetafieldDefinitionService
 }
 
 // A general response error that follows a similar layout to Shopify's response
@@ -291,6 +293,8 @@ func NewClient(app App, shopName, token string, opts ...Option) *Client {
 	c.ShippingZone = &ShippingZoneServiceOp{client: c}
 	c.ProductListing = &ProductListingServiceOp{client: c}
 	c.AccessScopes = &AccessScopesServiceOp{client: c}
+
+	c.MetafieldDefinition = &MetafieldDefinitionServiceOp{client: c}
 
 	// apply any options
 	for _, opt := range opts {
