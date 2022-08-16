@@ -7,7 +7,6 @@ import (
 	"testing"
 
 	"github.com/jarcoal/httpmock"
-	//"github.com/jarcoal/httpmock"
 )
 
 func GraphQLMetafieldTests(t *testing.T, metafield Metafield) {
