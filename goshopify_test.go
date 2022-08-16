@@ -18,8 +18,9 @@ import (
 )
 
 const (
-	testApiVersion = "9999-99"
-	maxRetries     = 3
+	testApiVersion   = "9999-99"
+	latestApiVersion = "2022-07"
+	maxRetries       = 3
 )
 
 var (
@@ -50,6 +51,18 @@ func setup() {
 		WithVersion(testApiVersion),
 		WithRetry(maxRetries))
 	httpmock.ActivateNonDefault(client.Client)
+}
+
+func setupWithActualConnection(apiKey string, apiSecret string, redirectionUrl string, scope []string, storeName string, accessToken string) {
+	app = App{
+		ApiKey:      apiKey,
+		ApiSecret:   apiSecret,
+		RedirectUrl: redirectionUrl,
+		Scope:       strings.Join(scope, ","),
+	}
+	client = NewClient(app, storeName, accessToken,
+		WithVersion(latestApiVersion),
+		WithRetry(1))
 }
 
 func teardown() {
